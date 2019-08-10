@@ -26,7 +26,7 @@ def get_require_version(name):
 
 
 config = ConfigParser()
-config.read_file(open('tryton.cfg'))
+config.read_file(open(os.path.join(os.path.dirname(__file__), 'tryton.cfg')))
 info = dict(config.items('tryton'))
 for key in ('depends', 'extras_depend', 'xml'):
     if key in info:
@@ -59,11 +59,17 @@ if minor_version % 2:
 setup(name=name,
     version=version,
     description='Tryton module to outsource production',
-    long_description=read('README'),
+    long_description=read('README.rst'),
     author='Tryton',
-    author_email='issue_tracker@tryton.org',
+    author_email='bugs@tryton.org',
     url='http://www.tryton.org/',
     download_url=download_url,
+    project_urls={
+        "Bug Tracker": 'https://bugs.tryton.org/',
+        "Documentation": 'https://docs.tryton.org/',
+        "Forum": 'https://www.tryton.org/forum',
+        "Source Code": 'https://hg.tryton.org/modules/production_outsourcing',
+        },
     keywords='tryton production outsourcing',
     package_dir={'trytond.modules.production_outsourcing': '.'},
     packages=(
@@ -89,6 +95,7 @@ setup(name=name,
         'Natural Language :: Czech',
         'Natural Language :: Dutch',
         'Natural Language :: English',
+        'Natural Language :: Finnish',
         'Natural Language :: French',
         'Natural Language :: German',
         'Natural Language :: Hungarian',
@@ -99,8 +106,9 @@ setup(name=name,
         'Natural Language :: Russian',
         'Natural Language :: Slovenian',
         'Natural Language :: Spanish',
+        'Natural Language :: Turkish',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -109,6 +117,7 @@ setup(name=name,
         'Topic :: Office/Business',
         ],
     license='GPL-3',
+    python_requires='>=3.5',
     install_requires=requires,
     dependency_links=dependency_links,
     zip_safe=False,
